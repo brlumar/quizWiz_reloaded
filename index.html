@@ -15,24 +15,46 @@
     <div class="quiz-container">
         <section id="top-of-container">
             <a href="./scores.html" id="high-scores">Vew High Scores</a>
-            <div  id="time">0</div>
+            <div id="time">0</div>
             <h4>Score: </h4>
             <h4 id="right-count">0</h4>
         </section>
-        
-        <button id="reset-btn">Reset</button>
+
+        <button class="btn" id="reset-btn">Reset</button>
         <h1>JavaScript Quiz</h1>
-        <button id="start-btn">Start Quiz</button>
+        <button class="btn" id="start-btn">Start Quiz</button>
         <div id="question-container">
             <p id="question"></p>
             <div id="answer-buttons" class="btn-container"></div>
         </div>
+
+        <button id="modalBtn" class="button">Click Here</button>
+        <div id="simpleModal" class="modal"></div>
+
+        <div id="simpeModal" class="modal">
+            <div class="modal-content">
+                <span class="closeBtn"> &times;</span>
+                <p> The modal content here.</p>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
         <audio id="myAudio">
             <source src="./audio/ding-36029.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <audio id="myAudioIncorrect">
             <source src="./audio/negative_beeps-6008.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="myAudioWellDone">
+            <source src="./audio/crowd-applause-113728.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
 

@@ -5,20 +5,20 @@ const questionContainer = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtons = document.getElementById('answer-buttons');
 const timeElement = document.getElementById('time');
-const writeCorrect = document.getElementById('right-count');
+const writeCorrect = document.getElementById('right-count');  //variable that gives access to the score in the DOM
 const writeIncorrect = document.getElementById('wrong-count');
 const resetButton = document.getElementById('reset-btn');
-const audioElement = document.getElementById('myAudio'); // Get a reference to the audio element
-const audioElementIncorrect = document.getElementById('myAudioIncorrect'); // Get a reference to the audio element
-
+const audioElement = document.getElementById('myAudio'); // Get a reference to the correct audio element
+const audioElementIncorrect = document.getElementById('myAudioIncorrect'); // Get a reference to the incorrect audio element
+const audioElementCheer = document.getElementById('myAudioWellDone'); //geta reference to applause audion element
 
 let currentQuestionIndex = 0; //index that indicates which question is currecnt being displayed
-let time = 60; // seconds
+let time = 60; // seconds allowed to complete the quiz
 let timerInterval;
 let scoreCorrect = 0; //score holder for correct answers
 let scoreWrong = 0; //score holder for incorrect answers
 
-startButton.addEventListener('click', startQuiz);
+startButton.addEventListener('click', startQuiz); //listens for the start button to be clicked and starts the quiz
 resetButton.addEventListener('click', resetQuiz);
 
 function startQuiz() {
@@ -30,7 +30,7 @@ function startQuiz() {
 }
 
 function resetQuiz() {
-    scoreCorrect = -100;
+    scoreCorrect = -100; //set to negative number because writeRight() will set it to 0.
     //scoreWrong = -1;
     currentQuestionIndex = 0;
     time = 60;
@@ -110,6 +110,21 @@ function selectAnswer(correct) {
     //return scoreCorrect, scoreWrong;
 }
 
+// //Get modal element
+// var modal = document.getElementById('simpleModal');
+// //Get opem modal button
+// var modalBtn = document.getElementById('modalBtn');
+// //Get close buttom
+// var closeBtn = document.getElementById('closeBtn');
+
+// //Listen for click
+// modalBtn.addEventListener('click', openModal);
+
+// //Fumction to open modal
+// function openModal(){
+//     modal.style.display = 'block';
+// }
+
 
 
 // Play the audio
@@ -132,6 +147,16 @@ function pauseAudioIncorrect() {
     audioElementIncorrect.pause();
 }
 
+// Play the audio
+function playAudioCheer() {
+    audioElementCheer.play();
+}
+
+// Pause the audio
+function pauseAudioCheer() {
+    audioElementCheer.pause();
+}
+
 
 function updateTimer() {
     timeElement.innerText = time;
@@ -144,19 +169,8 @@ function updateTimer() {
 }
 
 function endQuiz() {
+    playAudioCheer();
     clearInterval(timerInterval);
     questionContainer.style.display = 'none';
     // Display high score form and save the score using localStorage
 }
-
-// const questions = [
-//     {
-//         question: 'What is JavaScript?',
-//         answers: [
-//             { text: 'A programming language', correct: true },
-//             { text: 'A type of coffee', correct: false },
-//             { text: 'A car brand', correct: false },
-//         ]
-//     },
-//     // Add more questions
-//];
