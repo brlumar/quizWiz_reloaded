@@ -5,9 +5,12 @@ const questionContainer = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtons = document.getElementById('answer-buttons');
 const timeElement = document.getElementById('time');
-const writeCorrect =document.getElementById('right-count');
-const writeIncorrect =document.getElementById('wrong-count');
+const writeCorrect = document.getElementById('right-count');
+const writeIncorrect = document.getElementById('wrong-count');
 const resetButton = document.getElementById('reset-btn');
+const audioElement = document.getElementById('myAudio'); // Get a reference to the audio element
+const audioElementIncorrect = document.getElementById('myAudioIncorrect'); // Get a reference to the audio element
+
 
 let currentQuestionIndex = 0; //index that indicates which question is currecnt being displayed
 let time = 60; // seconds
@@ -27,12 +30,12 @@ function startQuiz() {
 }
 
 function resetQuiz() {
-    scoreCorrect = -1;
-    scoreWrong = -1;
+    scoreCorrect = -100;
+    //scoreWrong = -1;
     currentQuestionIndex = 0;
     time = 60;
     writeRight();
-    writeWrong();
+    //writeWrong();
     startQuiz();
 }
 
@@ -48,8 +51,8 @@ function updateQuestion() { //function that updates the questions in the questio
         answerButtons.appendChild(button);
     });
 }
-
-function writeRight(){
+//function for writing the score for correct answers. 100 point per correct.
+function writeRight() {
     scoreCorrect = scoreCorrect + 100;
     writeCorrect.innerText = scoreCorrect;
 }
@@ -70,7 +73,7 @@ function clearQuestion() {
 //}
 
 function addCorrect() {
-   
+
     console.log('Correct ', scoreCorrect);
 }
 
@@ -79,31 +82,56 @@ function selectAnswer(correct) {
     if (correct) {
         currentQuestionIndex++;
         writeRight();
+        playAudio();
         if (currentQuestionIndex < questionData.length) {
             updateQuestion();
             addCorrect();
-            
+
         } else {
             endQuiz();
             addCorrect();
-            
+
         }
     } else {
         currentQuestionIndex++;
         //writeWrong();
         time -= 2;
+        playAudioIncorrect();
         if (currentQuestionIndex < questionData.length) {
             updateQuestion();
             //addIncorrect();
-            
+
         } else {
             endQuiz();
             //addIncorrect();
-            
+
         }
     }
     //return scoreCorrect, scoreWrong;
 }
+
+
+
+// Play the audio
+function playAudio() {
+    audioElement.play();
+}
+
+// Pause the audio
+function pauseAudio() {
+    audioElement.pause();
+}
+
+// Play the audio
+function playAudioIncorrect() {
+    audioElementIncorrect.play();
+}
+
+// Pause the audio
+function pauseAudioIncorrect() {
+    audioElementIncorrect.pause();
+}
+
 
 function updateTimer() {
     timeElement.innerText = time;
