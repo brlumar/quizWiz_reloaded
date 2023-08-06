@@ -28,22 +28,27 @@
             <div id="answer-buttons" class="btn-container"></div>
         </div>
 
-        <button id="modalBtn" class="button">Click Here</button>
-        <div id="simpleModal" class="modal"></div>
+        <!-- <button id="modalBtn" class="button">Click Here</button> -->
 
         <div id="simpeModal" class="modal">
             <div class="modal-content">
-                <span class="closeBtn"> &times;</span>
-                <p> The modal content here.</p>
+                <div class="modal-header">
+                    <h2>High Scores</h2>
+                </div>
 
+                <!-- <span class="closeBtn"> &times;</span> -->
+                <div class="nodal-body">
+                    <p>The modal content here.</p>
+                    <form>
+                        <label for="name-input">Enter Your Name:</label>
+                        <input id="name-input" type="text">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <h3>Well Done!</h3>
+                </div>
             </div>
         </div>
-
-
-
-
-
-
 
         <audio id="myAudio">
             <source src="./audio/ding-36029.mp3" type="audio/mpeg">

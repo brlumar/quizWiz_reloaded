@@ -18,6 +18,15 @@ let timerInterval;
 let scoreCorrect = 0; //score holder for correct answers
 let scoreWrong = 0; //score holder for incorrect answers
 
+//Get modal element
+// var modal = document.getElementById('simpleModal');
+
+var modal = document.querySelector('.modal');
+//Get opem modal button
+var modalBtn = document.getElementById('modalBtn');
+//Get close buttom
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
 startButton.addEventListener('click', startQuiz); //listens for the start button to be clicked and starts the quiz
 resetButton.addEventListener('click', resetQuiz);
 
@@ -110,22 +119,24 @@ function selectAnswer(correct) {
     //return scoreCorrect, scoreWrong;
 }
 
-// //Get modal element
-// var modal = document.getElementById('simpleModal');
-// //Get opem modal button
-// var modalBtn = document.getElementById('modalBtn');
-// //Get close buttom
-// var closeBtn = document.getElementById('closeBtn');
 
-// //Listen for click
-// modalBtn.addEventListener('click', openModal);
+//Listen for open click
+modalBtn.addEventListener('click', openModal);
 
-// //Fumction to open modal
-// function openModal(){
-//     modal.style.display = 'block';
-// }
+//Listen for close click
+modalBtn.addEventListener('click', closeModal);
 
+//Function to open modal
+function openModal(){
+     modal.style.display = 'block';
+    //modalEl.classList.add('block');
+    console.log('openModal')
+}
 
+//Function to close modal
+function closeModal(){
+    modal.style.display = 'none';
+}
 
 // Play the audio
 function playAudio() {
@@ -172,5 +183,6 @@ function endQuiz() {
     playAudioCheer();
     clearInterval(timerInterval);
     questionContainer.style.display = 'none';
+    openModal();
     // Display high score form and save the score using localStorage
 }
