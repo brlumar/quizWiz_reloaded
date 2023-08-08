@@ -18,14 +18,22 @@ let timerInterval;
 let scoreCorrect = 0; //score holder for correct answers
 let scoreWrong = 0; //score holder for incorrect answers
 
+// Get a reference to the toggle switch and the question container
+const toggleSwitch = document.getElementById('toggle-switch');
+const scoreModal = document.getElementById('simple-modal');
+const scoreButtons = document.getElementById('score-buttons');
+
 //Get modal element
 // var modal = document.getElementById('simpleModal');
 
 var modal = document.querySelector('.modal');
 //Get opem modal button
-var modalBtn = document.getElementById('modalBtn');
-//Get close buttom
-var closeBtn = document.getElementsByClassName('closeBtn')[0];
+// var modalBtn = document.getElementById('modalBtn');
+// //Get close buttom
+// var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+var nameInput = document.querySelector('#name-input');
+var formEl = document.querySelector('#user-form');
 
 startButton.addEventListener('click', startQuiz); //listens for the start button to be clicked and starts the quiz
 resetButton.addEventListener('click', resetQuiz);
@@ -121,22 +129,85 @@ function selectAnswer(correct) {
 
 
 //Listen for open click
-modalBtn.addEventListener('click', openModal);
+// modalBtn.addEventListener('click', openModal);
 
 //Listen for close click
-modalBtn.addEventListener('click', closeModal);
+// modalBtn.addEventListener('click', closeModal);
 
 //Function to open modal
-function openModal(){
-     modal.style.display = 'block';
+function openModal() {
+    modal.style.display = 'block';
     //modalEl.classList.add('block');
-    console.log('openModal')
+    console.log('openModal') //check added to make sure fuction opens
 }
 
 //Function to close modal
-function closeModal(){
+function closeModal() {
     modal.style.display = 'none';
+    console.log("modal should be closed");
 }
+
+//Outputs the user info to the window
+function showUserData() {
+    var userData = addToArray();
+
+    console.log(userData);
+
+}
+
+function clearData() {
+    nameInput.value = '';
+}
+
+function addToArray() { //getUserData()
+    var rawData = localStorage.getItem('users');
+    var parse = JSON.parse(rawData) || [];
+
+    return parse;
+}
+
+function saveUserData(arr) {
+    var jasonVal = JSON.stringify(arr);
+    localStorage.setItem('users', jasonVal);
+}
+
+function getUserInput(eventObj) {
+    eventObj.preventDefault();
+
+    var userScore = {
+        name: nameInput.value,
+        score: scoreCorrect
+    };
+    var usersArray = addToArray();
+    usersArray.push(userScore);
+
+    saveUserData(usersArray);
+
+    clearData();
+
+
+}
+
+
+
+
+
+// function getUserInput(eventObj){
+// // eventObj.preventDefault();
+// let name = nameInput.value;
+
+// // if (eventObj.keyCode ===13){ //checks to see if the enter key was pressed. 
+// console.log('name input is: ', name);
+// localStorage.setItem('name', name);
+// }
+// // }
+
+// nameInput.addEventListener('keydown', getUserInput);
+// formEl.addEventListener('submit', function(eventObj){
+//     // eventObj.preventDefault(); 
+// });
+
+
 
 // Play the audio
 function playAudio() {
@@ -184,5 +255,21 @@ function endQuiz() {
     clearInterval(timerInterval);
     questionContainer.style.display = 'none';
     openModal();
+    //Initial process to start task
+    formEl.addEventListener('submit', getUserInput);
+    formEl.addEventListener('submit', closeModal);
+
     // Display high score form and save the score using localStorage
+    // Add an event listener to the toggle switch
+
 }
+
+
+toggleSwitch.addEventListener('change', () => {
+    // Toggle the visibility of the question container
+    if (toggleSwitch.checked) {
+        scoreModal.style.display = 'block'; // Show the container
+    } else {
+        scoreModal.style.display = 'none'; // Hide the container
+    }
+});

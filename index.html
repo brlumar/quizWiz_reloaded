@@ -14,7 +14,12 @@
 
     <div class="quiz-container">
         <section id="top-of-container">
-            <a href="./scores.html" id="high-scores">Vew High Scores</a>
+            <!-- <a href="./scores.html" id="high-scores">Vew High Scores</a> -->
+            <div class="toggle-container">
+                <label class="toggle-label" for="toggle-switch">High Scores:</label>
+                <input type="checkbox" id="toggle-switch" class="toggle-switch">
+            </div>
+            
             <div id="time">0</div>
             <h4>Score: </h4>
             <h4 id="right-count">0</h4>
@@ -30,23 +35,29 @@
 
         <!-- <button id="modalBtn" class="button">Click Here</button> -->
 
-        <div id="simpeModal" class="modal">
+        <div id="simple-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>High Scores</h2>
                 </div>
 
                 <!-- <span class="closeBtn"> &times;</span> -->
-                <div class="nodal-body">
-                    <p>The modal content here.</p>
-                    <form>
+                <div class="modal-body">
+                    <form id="user-form">
                         <label for="name-input">Enter Your Name:</label>
                         <input id="name-input" type="text">
+                        <button>Submit</button>
                     </form>
                 </div>
+
                 <div class="modal-footer">
                     <h3>Well Done!</h3>
                 </div>
+            </div>
+        </div>
+        <div class="high-scores">
+            <h2>HIGH SCORES</h2>
+                <div id="score-buttons" class="btn-container"></div>
             </div>
         </div>
 

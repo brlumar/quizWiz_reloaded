@@ -38,6 +38,7 @@ body {
     background-color: #d7f9f1;
     border: 1px solid #afbc88;
     border-radius: 5px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.4), 0 7px 20px 0 rgba(0, 0, 0, 0.4);
 
 
 }
@@ -47,6 +48,7 @@ body {
     flex-direction: column;
     gap: 10px;
 
+
 }
 
 #time {
@@ -54,6 +56,7 @@ body {
     display: flex;
     justify-content: right;
     font-size: 30px;
+    
 
 
 }
@@ -64,6 +67,9 @@ body {
     background-color: darkolivegreen;
     color: honeydew;
     cursor: pointer;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.1), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+
+
 }
 
 /* .button {
@@ -91,6 +97,19 @@ body {
 
 }
 
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+
+
+}
 .modal-content {
     background-color: #f4f4f4;
     margin: 20% auto;
@@ -111,7 +130,8 @@ color: #fff;
 }
 
 .modal-body{
-    padding: 15px 20px;
+    padding: 25px 20px;
+  
 }
 
 .modal-footer{
@@ -137,3 +157,66 @@ color: #fff;
     text-decoration: none;
     cursor: pointer;
 } */
+
+form {
+    margin-bottom: 25;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* width: 200px 200px; */
+}
+
+form input, form button{
+    /* display: flex;
+    justify-content: center; */
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    border-radius: 3%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.1), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+
+    
+}
+
+form button{
+    border: none;
+    padding: 7px 10px;
+    background-color: rgb(200, 195, 195);
+    cursor: pointer;
+    color: white;
+    font-family: serif, sans-serif;
+
+
+}
+/* Style for the toggle switch */
+.toggle-label {
+    margin-right: 10px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.toggle-switch:checked {
+    background-color: #66bb6a; /* Change color when checked */
+}
+
+.toggle-switch:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.toggle-switch:checked:before {
+    transform: translateX(20px); /* Move to the right when checked */
+}
