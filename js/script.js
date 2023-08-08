@@ -136,6 +136,11 @@ function showUserData() {
 
 }
 
+//function that clears the question text in preperation for the new question's text
+function clearArray() {
+    scoreButtons.innerHTML = '';
+}
+
 //function that sets the data to an empty string
 function clearData() {
     nameInput.value = '';
@@ -220,6 +225,7 @@ function updateTimer() {
     }
 }
 function writeScores() { //function that writes the saved scores to modal for display
+    clearArray();
     if (!quizStarted) { //prevents the array from doubling itself upon start
         quizStarted = true;
 
