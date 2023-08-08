@@ -53,7 +53,7 @@ Enjoy QuizWiz Reloaded and have fun improving your JavaScript knowledge!
 Please make sure to visit the provided links to learn more about the licensing terms and to give proper credit to the creators of these assets.
 
 Github: https://github.com/brlumar/quizWiz_reloaded
-Site URL: 
+Site URL: https://brlumar.github.io/quizWiz_reloaded/
 
 
 ![Site Image](image.png)
