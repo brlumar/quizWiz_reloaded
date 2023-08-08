@@ -1,13 +1,12 @@
 //import questionData from './quizQuestions';
 
-const startButton = document.getElementById('start-btn');
-const questionContainer = document.getElementById('question-container');
-const questionElement = document.getElementById('question');
-const answerButtons = document.getElementById('answer-buttons');
-const timeElement = document.getElementById('time');
+const startButton = document.getElementById('start-btn'); //variable that gives access to the start button in the DOM
+const questionContainer = document.getElementById('question-container'); //variable that gives access to the question container in the DOM
+const questionElement = document.getElementById('question'); //variable that gives access to the questions in the DOM
+const answerButtons = document.getElementById('answer-buttons'); //variable that gives access to the answer button in the DOM
+const timeElement = document.getElementById('time'); //variable that gives access to the clock in the DOM
 const writeCorrect = document.getElementById('right-count');  //variable that gives access to the score in the DOM
-const writeIncorrect = document.getElementById('wrong-count');
-const resetButton = document.getElementById('reset-btn');
+const resetButton = document.getElementById('reset-btn'); //variable that gives access to the restart button in the DOM
 const audioElement = document.getElementById('myAudio'); // Get a reference to the correct audio element
 const audioElementIncorrect = document.getElementById('myAudioIncorrect'); // Get a reference to the incorrect audio element
 const audioElementCheer = document.getElementById('myAudioWellDone'); //geta reference to applause audion element
@@ -19,26 +18,23 @@ let scoreCorrect = 0; //score holder for correct answers
 let scoreWrong = 0; //score holder for incorrect answers
 
 // Get a reference to the toggle switch and the question container
-const toggleSwitch = document.getElementById('toggle-switch');
-const scoreModal = document.getElementById('simple-modal');
-const scoreButtons = document.getElementById('score-buttons');
+const toggleSwitch = document.getElementById('toggle-switch');  //variable that gives access to the toggle switch in the DOM
+const scoreModal = document.getElementById('score-modal');  //variable that gives access to the score modal in the DOM
+const scoreButtons = document.getElementById('score-buttons'); //variable that gives access to the score button in the DOM
 
-//Get modal element
-// var modal = document.getElementById('simpleModal');
 
-var modal = document.querySelector('.modal');
-//Get opem modal button
-// var modalBtn = document.getElementById('modalBtn');
-// //Get close buttom
-// var closeBtn = document.getElementsByClassName('closeBtn')[0];
 
-var nameInput = document.querySelector('#name-input');
-var formEl = document.querySelector('#user-form');
+var modal = document.querySelector('.modal');  //variable that gives access to the input modal in the DOM
+
+
+var nameInput = document.querySelector('#name-input');  //variable that gives access to the name input label in the DOM
+var formEl = document.querySelector('#user-form'); //variable that gives access to the user form that holds the user input in the DOM
 
 startButton.addEventListener('click', startQuiz); //listens for the start button to be clicked and starts the quiz
-resetButton.addEventListener('click', resetQuiz);
+resetButton.addEventListener('click', resetQuiz); //listens for the restart button to be clicked and starts the quiz
 
 function startQuiz() {
+    //scoreModal.style.display = 'none';
     startButton.disabled = true;
     startButton.style.display = 'none';
     questionContainer.style.display = 'block';
@@ -46,13 +42,12 @@ function startQuiz() {
     updateQuestion();
 }
 
+//function that restarts the quiz and resets the values
 function resetQuiz() {
     scoreCorrect = -100; //set to negative number because writeRight() will set it to 0.
-    //scoreWrong = -1;
     currentQuestionIndex = 0;
     time = 60;
     writeRight();
-    //writeWrong();
     startQuiz();
 }
 
@@ -61,8 +56,8 @@ function updateQuestion() { //function that updates the questions in the questio
     const question = questionData[currentQuestionIndex]; //stores the current questions into a const for easier, cleaner use in function
     questionElement.innerText = question.question; //moves question to the display text
     question.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
+        const button = document.createElement('button'); //creates a button
+        button.innerText = answer.text; //changes the inner text of the button
         button.classList.add('btn');
         button.addEventListener('click', () => selectAnswer(answer.correct));
         answerButtons.appendChild(button);
@@ -74,20 +69,13 @@ function writeRight() {
     writeCorrect.innerText = scoreCorrect;
 }
 
-// function writeWrong(){
-//     scoreWrong = scoreWrong + 1;
-//     writeIncorrect.innerText = scoreCorrect;
-//}
 
+//function that clears the question text in preperation for the new question's text
 function clearQuestion() {
     questionElement.innerText = '';
     answerButtons.innerHTML = '';
 }
 
-// function addIncorrect() {
-//     scoreWrong = scoreWrong + 1;
-//     console.log('Wrong ', scoreWrong);
-//}
 
 function addCorrect() {
 
@@ -124,15 +112,8 @@ function selectAnswer(correct) {
 
         }
     }
-    //return scoreCorrect, scoreWrong;
+   
 }
-
-
-//Listen for open click
-// modalBtn.addEventListener('click', openModal);
-
-//Listen for close click
-// modalBtn.addEventListener('click', closeModal);
 
 //Function to open modal
 function openModal() {
@@ -155,24 +136,28 @@ function showUserData() {
 
 }
 
+//function that sets the data to an empty string
 function clearData() {
     nameInput.value = '';
 }
 
-function addToArray() { //getUserData()
+//function that gets the JSON array from the local storage and converts it to a JavaScript array
+function addToArray() { 
     var rawData = localStorage.getItem('users');
     var parse = JSON.parse(rawData) || [];
 
     return parse;
 }
 
-function saveUserData(arr) {
+//function that converts the array into a JSON value so it can be used in local storage then send it into local storage
+function saveUserData(arr) {  
     var jasonVal = JSON.stringify(arr);
     localStorage.setItem('users', jasonVal);
 }
 
+//function that retrieves the user input 
 function getUserInput(eventObj) {
-    eventObj.preventDefault();
+    eventObj.preventDefault(); //prevent the default behavior so the form doesn't prematurely submit
 
     var userScore = {
         name: nameInput.value,
@@ -184,62 +169,43 @@ function getUserInput(eventObj) {
     saveUserData(usersArray);
 
     clearData();
+    writeScores();
 
 
 }
 
 
-
-
-
-// function getUserInput(eventObj){
-// // eventObj.preventDefault();
-// let name = nameInput.value;
-
-// // if (eventObj.keyCode ===13){ //checks to see if the enter key was pressed. 
-// console.log('name input is: ', name);
-// localStorage.setItem('name', name);
-// }
-// // }
-
-// nameInput.addEventListener('keydown', getUserInput);
-// formEl.addEventListener('submit', function(eventObj){
-//     // eventObj.preventDefault(); 
-// });
-
-
-
-// Play the audio
+// Play the audio for correct answer
 function playAudio() {
     audioElement.play();
 }
 
-// Pause the audio
+// Pause the audio for correct answers
 function pauseAudio() {
     audioElement.pause();
 }
 
-// Play the audio
+// Play the audio for incorrect answers
 function playAudioIncorrect() {
     audioElementIncorrect.play();
 }
 
-// Pause the audio
+// Pause the audio for incorrect answers
 function pauseAudioIncorrect() {
     audioElementIncorrect.pause();
 }
 
-// Play the audio
+// Play the audio for applause when the quiz is over
 function playAudioCheer() {
     audioElementCheer.play();
 }
 
-// Pause the audio
+// Pause the audio for applause when the quiz is over
 function pauseAudioCheer() {
     audioElementCheer.pause();
 }
 
-
+//fuction that updates the time and subtract and extra second afer wrong answer
 function updateTimer() {
     timeElement.innerText = time;
     if (time <= 0) {
@@ -249,16 +215,30 @@ function updateTimer() {
         time--;
     }
 }
+function writeScores() { //function that writes the saved scores to modal for display
+   
+    var highArray = addToArray();  //writes the text into an array of objects
+    for (let i = 0; i < highArray.length; i++) {
+        const currentObject = highArray[i];  //variable that becomes the current object in the array based on the index in the loop
+        const button = document.createElement('button');  //creates a variable to give access to the button
+        button.innerText = 'Name: '+ currentObject.name + '  Score: ' + currentObject.score; //adds text to the button
+        // button.addEventListener('click', () => selectAnswer(answer.correct));
+        button.classList.add('btn-score'); //adds a class to the button for css styling
+        scoreButtons.appendChild(button); 
+
+        console.log('Object name:', currentObject.name);
+        console.log('Object value:', currentObject.score);
+    }
+}
 
 function endQuiz() {
     playAudioCheer();
-    clearInterval(timerInterval);
-    questionContainer.style.display = 'none';
-    openModal();
-    //Initial process to start task
+    clearInterval(timerInterval); //clears the timer
+    questionContainer.style.display = 'none'; //hides the questoin container
+    openModal(); //opens the modal for name entry
     formEl.addEventListener('submit', getUserInput);
     formEl.addEventListener('submit', closeModal);
-
+    //writeScores();
     // Display high score form and save the score using localStorage
     // Add an event listener to the toggle switch
 

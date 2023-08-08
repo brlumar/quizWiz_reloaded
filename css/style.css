@@ -54,11 +54,17 @@ body {
 #time {
 
     display: flex;
-    justify-content: right;
-    font-size: 30px;
-    
+    justify-content: center;
+    font-size: 60px;
+    padding: 20px;
+    margin-right: 95px;
 
 
+
+}
+
+.score-container h4 {
+    display: inline;
 }
 
 #start-btn {
@@ -72,16 +78,27 @@ body {
 
 }
 
-/* .button {
-    background: coral;
-    padding: 1em 2em;
-    color: #fff;
-    border: 0;
-} */
+.btn-score {
+    border: none;
+    padding: 7px 10px;
+    color: rgb(50, 167, 149);
+    cursor: pointer;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.1), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
 
-/* .button:hover {
-    background: #333;
-} */
+}
+
+#reset-btn {
+    border: none;
+    padding: 7px 10px;
+    background-color: rgb(71, 142, 173);
+    color: honeydew;
+    cursor: pointer;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.1), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+
+
+}
+
+
 
 .modal {
     position: fixed;
@@ -110,6 +127,7 @@ body {
 
 
 }
+
 .modal-content {
     background-color: #f4f4f4;
     margin: 20% auto;
@@ -119,30 +137,36 @@ body {
     animation-duration: 2.5s;
 }
 
-.modal-header h2, .modal-footer{
+.modal-header h2,
+.modal-footer {
     margin: 0;
 }
 
-.modal-header{
-background: coral;
-padding: 15px;
-color: #fff;
+.modal-header {
+    background: rgb(49, 148, 190);
+    padding: 15px;
+    color: #fff;
 }
 
-.modal-body{
+.modal-body {
     padding: 25px 20px;
-  
+
 }
 
-.modal-footer{
-    background: coral;
+.modal-footer {
+    background: rgb(49, 148, 190);
     padding: 10px;
     text-align: center;
 }
 
-@keyframes modalopen{
-    from{opacity: 0}
-    to {opacity: 1}
+@keyframes modalopen {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
 }
 
 /* .closeBtn {
@@ -166,18 +190,18 @@ form {
     /* width: 200px 200px; */
 }
 
-form input, form button{
+form input,
+form button {
     /* display: flex;
     justify-content: center; */
     padding: 6px 10px;
     margin-bottom: 8px;
-    border-radius: 3%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.1), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
 
-    
+
 }
 
-form button{
+form button {
     border: none;
     padding: 7px 10px;
     background-color: rgb(200, 195, 195);
@@ -187,6 +211,7 @@ form button{
 
 
 }
+
 /* Style for the toggle switch */
 .toggle-label {
     margin-right: 10px;
@@ -202,7 +227,8 @@ form button{
 }
 
 .toggle-switch:checked {
-    background-color: #66bb6a; /* Change color when checked */
+    background-color: #66bb6a;
+    /* Change color when checked */
 }
 
 .toggle-switch:before {
@@ -218,5 +244,6 @@ form button{
 }
 
 .toggle-switch:checked:before {
-    transform: translateX(20px); /* Move to the right when checked */
+    transform: translateX(20px);
+    /* Move to the right when checked */
 }

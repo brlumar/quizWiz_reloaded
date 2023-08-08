@@ -19,13 +19,15 @@
                 <label class="toggle-label" for="toggle-switch">High Scores:</label>
                 <input type="checkbox" id="toggle-switch" class="toggle-switch">
             </div>
-            
+
             <div id="time">0</div>
-            <h4>Score: </h4>
-            <h4 id="right-count">0</h4>
+            <div class="score-container">
+                <h4>Score: </h4>
+                <h4 id="right-count">0</h4>
+            </div>
         </section>
 
-        <button class="btn" id="reset-btn">Reset</button>
+        <button class="btn" id="reset-btn">Restart</button>
         <h1>JavaScript Quiz</h1>
         <button class="btn" id="start-btn">Start Quiz</button>
         <div id="question-container">
@@ -55,24 +57,24 @@
                 </div>
             </div>
         </div>
-        <div class="high-scores">
+        <div id="score-modal" class="high-scores">
             <h2>HIGH SCORES</h2>
-                <div id="score-buttons" class="btn-container"></div>
-            </div>
+            <div id="score-buttons" class="btn-container"></div>
         </div>
+    </div>
 
-        <audio id="myAudio">
-            <source src="./audio/ding-36029.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <audio id="myAudioIncorrect">
-            <source src="./audio/negative_beeps-6008.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <audio id="myAudioWellDone">
-            <source src="./audio/crowd-applause-113728.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    <audio id="myAudio">
+        <source src="./audio/ding-36029.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudioIncorrect">
+        <source src="./audio/negative_beeps-6008.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudioWellDone">
+        <source src="./audio/crowd-applause-113728.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     </div>
     <script src="js/quizQuestions.js"></script>
