@@ -39,7 +39,6 @@ startButton.addEventListener('click', startQuiz); //listens for the start button
 resetButton.addEventListener('click', resetQuiz); //listens for the restart button to be clicked and starts the quiz
 
 function startQuiz() {
-    //scoreModal.style.display = 'none';
     startButton.disabled = true;
     startButton.style.display = 'none';
     questionContainer.style.display = 'block';
@@ -104,16 +103,13 @@ function selectAnswer(correct) {
         }
     } else {
         currentQuestionIndex++;
-        //writeWrong();
         time -= 2;
         playAudioIncorrect();
         if (currentQuestionIndex < questionData.length) {
             updateQuestion();
-            //addIncorrect();
 
         } else {
             endQuiz();
-            //addIncorrect();
 
         }
     }
@@ -123,7 +119,6 @@ function selectAnswer(correct) {
 //Function to open modal
 function openModal() {
     modal.style.display = 'block';
-    //modalEl.classList.add('block');
     console.log('openModal') //check added to make sure fuction opens
 }
 
@@ -175,7 +170,6 @@ function getUserInput(eventObj) {
 
     clearData();
     writeScores();
-    // scoreModal.style.display = 'none'; // Hide the container
 
     if (!quizStarted) {
         resetButton.style.display = 'none'; //shows the reset button
@@ -252,9 +246,7 @@ function endQuiz() {
     openModal(); //opens the modal for name entry
     formEl.addEventListener('submit', getUserInput);
     formEl.addEventListener('submit', closeModal);
-    //writeScores();
-    // Display high score form and save the score using localStorage
-    // Add an event listener to the toggle switch
+   
 
 }
 
