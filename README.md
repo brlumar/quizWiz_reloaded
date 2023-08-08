@@ -37,3 +37,17 @@ Welcome to QuizWiz Reloaded! This is a simple web application that lets you prac
 
 Enjoy QuizWiz Reloaded and have fun improving your JavaScript knowledge!
 
+## Attribution for Royalty-Free Assets
+
+### Sounds
+
+- "Ding Sound" by [Pixabay](https://pixabay.com/sound-effects/search/ding/) (License: Personal Use)
+- "Incorrect Sound" by [Pixabay](https://pixabay.com/sound-effects/search/wrong/) (License: Personal Use)
+- "Applause Sound" by [Pixabay](https://pixabay.com/sound-effects/search/applause/) (License: Personal Use)
+
+### Images
+
+- "Background Image" by [CleanPNG](https://www.cleanpng.com/png-colorful-diamond-background-vector-5467/download-png.html) (License: Personal Use)
+
+
+Please make sure to visit the provided links to learn more about the licensing terms and to give proper credit to the creators of these assets.

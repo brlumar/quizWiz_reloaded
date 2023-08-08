@@ -1,8 +1,9 @@
 body {
     margin-top: 12%;
 
+    font-family: Georgia, 'Times New Roman', Times, serif;
 
-    font-family: serif, sans-serif;
+    /* font-family: serif, sans-serif; */
     text-align: center;
     background-color: #7aa095;
 
@@ -11,12 +12,15 @@ body {
 
 }
 
+
+
 #high-scores {
     display: flex;
     text-decoration: #d7f9f1;
     margin: 0;
     color: black;
     cursor: pointer;
+    
 
 }
 
@@ -24,7 +28,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
     padding: 7px 10px;
     margin-top: 0;
 
@@ -55,9 +60,10 @@ body {
 
     display: flex;
     justify-content: center;
-    font-size: 60px;
+    font-size: 100px;
     padding: 20px;
     margin-right: 95px;
+    
 
 
 
@@ -94,11 +100,15 @@ body {
     color: honeydew;
     cursor: pointer;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.1), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
-
+    display: none;
+    justify-content: center;
+    
 
 }
 
-
+#score-model{
+    display: none;
+}
 
 .modal {
     position: fixed;
@@ -114,7 +124,7 @@ body {
 
 }
 
-.modal {
+/* .modal {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -126,7 +136,7 @@ body {
     display: none;
 
 
-}
+} */
 
 .modal-content {
     background-color: #f4f4f4;
@@ -226,10 +236,10 @@ form button {
     border-radius: 10px;
 }
 
-.toggle-switch:checked {
+/* .toggle-switch:checked {
     background-color: #66bb6a;
     /* Change color when checked */
-}
+/* } */ */
 
 .toggle-switch:before {
     content: '';

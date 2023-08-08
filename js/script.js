@@ -16,6 +16,7 @@ let time = 60; // seconds allowed to complete the quiz
 let timerInterval;
 let scoreCorrect = 0; //score holder for correct answers
 let scoreWrong = 0; //score holder for incorrect answers
+let quizStarted = false;
 
 // Get a reference to the toggle switch and the question container
 const toggleSwitch = document.getElementById('toggle-switch');  //variable that gives access to the toggle switch in the DOM
@@ -29,6 +30,10 @@ var modal = document.querySelector('.modal');  //variable that gives access to t
 
 var nameInput = document.querySelector('#name-input');  //variable that gives access to the name input label in the DOM
 var formEl = document.querySelector('#user-form'); //variable that gives access to the user form that holds the user input in the DOM
+
+var highArray = [];  //writes the text into an array of objects
+
+scoreModal.style.display = 'none'; // Hide the container
 
 startButton.addEventListener('click', startQuiz); //listens for the start button to be clicked and starts the quiz
 resetButton.addEventListener('click', resetQuiz); //listens for the restart button to be clicked and starts the quiz
@@ -112,7 +117,7 @@ function selectAnswer(correct) {
 
         }
     }
-   
+
 }
 
 //Function to open modal
@@ -142,7 +147,7 @@ function clearData() {
 }
 
 //function that gets the JSON array from the local storage and converts it to a JavaScript array
-function addToArray() { 
+function addToArray() {
     var rawData = localStorage.getItem('users');
     var parse = JSON.parse(rawData) || [];
 
@@ -150,7 +155,7 @@ function addToArray() {
 }
 
 //function that converts the array into a JSON value so it can be used in local storage then send it into local storage
-function saveUserData(arr) {  
+function saveUserData(arr) {
     var jasonVal = JSON.stringify(arr);
     localStorage.setItem('users', jasonVal);
 }
@@ -170,6 +175,11 @@ function getUserInput(eventObj) {
 
     clearData();
     writeScores();
+    // scoreModal.style.display = 'none'; // Hide the container
+
+    if (!quizStarted) {
+        resetButton.style.display = 'none'; //shows the reset button
+    }
 
 
 }
@@ -216,15 +226,18 @@ function updateTimer() {
     }
 }
 function writeScores() { //function that writes the saved scores to modal for display
-   
-    var highArray = addToArray();  //writes the text into an array of objects
+    if (!quizStarted) { //prevents the array from doubling itself upon start
+        quizStarted = true;
+
+    }
+    highArray = addToArray();
     for (let i = 0; i < highArray.length; i++) {
         const currentObject = highArray[i];  //variable that becomes the current object in the array based on the index in the loop
         const button = document.createElement('button');  //creates a variable to give access to the button
-        button.innerText = 'Name: '+ currentObject.name + '  Score: ' + currentObject.score; //adds text to the button
+        button.innerText = 'Name: ' + currentObject.name + '  Score: ' + currentObject.score; //adds text to the button
         // button.addEventListener('click', () => selectAnswer(answer.correct));
         button.classList.add('btn-score'); //adds a class to the button for css styling
-        scoreButtons.appendChild(button); 
+        scoreButtons.appendChild(button);
 
         console.log('Object name:', currentObject.name);
         console.log('Object value:', currentObject.score);
@@ -235,6 +248,7 @@ function endQuiz() {
     playAudioCheer();
     clearInterval(timerInterval); //clears the timer
     questionContainer.style.display = 'none'; //hides the questoin container
+    resetButton.style.display = 'block'; //shows the reset button
     openModal(); //opens the modal for name entry
     formEl.addEventListener('submit', getUserInput);
     formEl.addEventListener('submit', closeModal);
@@ -249,6 +263,10 @@ toggleSwitch.addEventListener('change', () => {
     // Toggle the visibility of the question container
     if (toggleSwitch.checked) {
         scoreModal.style.display = 'block'; // Show the container
+        if (!quizStarted) {
+            writeScores();
+           
+        }
     } else {
         scoreModal.style.display = 'none'; // Hide the container
     }
